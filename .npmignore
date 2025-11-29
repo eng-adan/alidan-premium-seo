@@ -1,0 +1,14 @@
+src/
+types/
+tsconfig.json
+.gitignore
+.npmignore
+TESTING.md
+PUBLISHING.md
+*.log
+.DS_Store
+node_modules/
+.env
+.env.local
+
+

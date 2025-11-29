@@ -1,0 +1,54 @@
+{
+  "name": "alidan-premium-seo",
+  "version": "1.0.0",
+  "description": "A comprehensive SEO plugin for Next.js applications with advanced analysis and optimization tools",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/copy-css.js",
+    "dev": "tsc --watch",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "nextjs",
+    "next.js",
+    "seo",
+    "meta-tags",
+    "open-graph",
+    "schema.org",
+    "sitemap",
+    "robots.txt",
+    "structured-data",
+    "seo-analysis",
+    "yoast-alternative"
+  ],
+  "author": "Adan Sarfraz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eng-adan/alidan-premium-seo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eng-adan/alidan-premium-seo/issues"
+  },
+  "homepage": "https://github.com/eng-adan/alidan-premium-seo#readme",
+  "peerDependencies": {
+    "next": ">=13.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}
+
