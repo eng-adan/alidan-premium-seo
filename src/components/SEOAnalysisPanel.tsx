@@ -4,7 +4,7 @@ import * as React from 'react';
 import type { SEOAnalysis, SEOIssue, SEOIssueSeverity } from '../types';
 import { getSEOScoreColor, getSEOScoreLabel } from '../utils/seo-analysis';
 
-interface SEOAnalysisPanelProps {
+export interface SEOAnalysisPanelProps {
   analysis: SEOAnalysis;
   className?: string;
 }

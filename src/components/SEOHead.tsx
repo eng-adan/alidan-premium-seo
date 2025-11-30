@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import type { SEOConfig } from '../types';
 
-interface SEOHeadProps {
+export interface SEOHeadProps {
   config: SEOConfig;
   defaultTitle?: string;
   defaultDescription?: string;
