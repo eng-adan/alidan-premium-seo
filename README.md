@@ -2,104 +2,250 @@
 
 # Next.js SEO Plugin
 
-**Enterprise-grade SEO toolkit for Next.js applications**
+**A complete SEO toolkit for Next.js applications**
 
 [![npm version](https://img.shields.io/npm/v/alidan-premium-seo.svg)](https://www.npmjs.com/package/alidan-premium-seo)
 [![npm downloads](https://img.shields.io/npm/dm/alidan-premium-seo.svg)](https://www.npmjs.com/package/alidan-premium-seo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-[Features](#-features) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Documentation](#-documentation) • [Examples](#-examples)
-
 </div>
 
 ---
 
-## 🎯 Overview
+## What is this?
 
-Next.js SEO Plugin is a comprehensive, production-ready solution for managing search engine optimization in Next.js applications. Built with TypeScript and designed for both App Router and Pages Router, it provides everything you need to optimize your site for search engines and social media platforms.
-
-Whether you're building a blog, e-commerce site, or corporate website, this plugin simplifies SEO management while providing powerful analysis tools to help you create content that ranks.
-
-### Why Choose Next.js SEO Plugin?
-
-- **🚀 Zero Configuration** - Works out of the box with sensible defaults
-- **📊 Real-time Analysis** - Get instant SEO feedback as you write
-- **🎨 Beautiful UI** - Professional analysis panel with actionable insights
-- **🔒 Type-Safe** - Full TypeScript support with comprehensive type definitions
-- **⚡ Performance** - Lightweight with zero runtime overhead
-- **🔄 Framework Agnostic** - Works with both App Router and Pages Router
-- **📱 Social Ready** - Optimized for Facebook, Twitter, LinkedIn, and more
+`alidan-premium-seo` is a SEO package for Next.js that handles meta tags, Open Graph, Twitter Cards, structured data, sitemaps, and includes real-time SEO analysis. Works with both App Router and Pages Router.
 
 ---
 
-## ✨ Features
+## Purpose
 
-### Core SEO Capabilities
+Managing SEO in Next.js applications is tedious. You need to:
+- Write meta tags for every page
+- Set up Open Graph tags for social sharing
+- Add Twitter Card metadata
+- Generate structured data (Schema.org) for rich snippets
+- Create and maintain sitemaps
+- Configure robots.txt
+- Validate SEO best practices
+- Track keyword usage and density
 
-| Feature | Description |
-|---------|-------------|
-| **Meta Tags** | Complete control over title, description, keywords, and author tags |
-| **Open Graph** | Rich social media previews for Facebook, LinkedIn, and more |
-| **Twitter Cards** | Optimized Twitter sharing with large image support |
-| **Structured Data** | Schema.org JSON-LD for rich snippets and enhanced search results |
-| **Canonical URLs** | Prevent duplicate content issues automatically |
-| **Sitemap Generation** | Dynamic XML sitemap creation with priority and change frequency |
-| **Robots.txt** | Programmatic robots.txt generation with flexible rules |
-
-### Advanced Analysis Tools
-
-| Tool | Benefit |
-|------|---------|
-| **SEO Scoring** | Real-time score (0-100) with traffic light indicators |
-| **Keyword Analysis** | Track focus keyword density, placement, and optimization |
-| **Readability Check** | Flesch Reading Ease scoring and content structure analysis |
-| **Best Practices** | Automatic validation against SEO industry standards |
-| **Issue Detection** | Color-coded issues with specific, actionable fixes |
+Doing this manually means repeating boilerplate code, making mistakes, and spending hours on tasks that should be automated. This package handles all of it with a simple API.
 
 ---
 
-## 📋 Requirements
+## Features
 
-- **Next.js** 13.0.0 or higher
-- **React** 18.0.0 or higher
-- **TypeScript** 5.0.0 or higher (recommended)
+**Meta Tags Management**
+- Title, description, keywords, author tags
+- Automatic character counting and validation
+- Canonical URL handling
+- Robots directives (noindex, nofollow)
+
+**Social Media Optimization**
+- Open Graph tags for Facebook, LinkedIn, etc.
+- Twitter Card support (summary, large image)
+- Automatic fallbacks and defaults
+
+**Structured Data**
+- Schema.org JSON-LD generation
+- Article, Product, Organization, Breadcrumb, Website schemas
+- Type-safe schema builders
+
+**Technical SEO**
+- Dynamic sitemap generation (App Router & Pages Router)
+- Programmatic robots.txt creation
+- Support for both Next.js routing systems
+
+**SEO Analysis**
+- Real-time SEO scoring (0-100)
+- Keyword density tracking
+- Readability analysis (Flesch Reading Ease)
+- Automatic issue detection with actionable fixes
+- Best practices validation
+
+**Developer Experience**
+- Full TypeScript support
+- Works with App Router and Pages Router
+- Zero configuration required
+- Lightweight with no runtime overhead
 
 ---
 
-## 🚀 Installation
+## Why use this instead of manual work?
+
+### Problem 1: Repetitive Boilerplate
+
+**Manual approach:**
+```typescript
+// You write this for every page
+<Head>
+  <title>Page Title</title>
+  <meta name="description" content="Description" />
+  <meta property="og:title" content="Page Title" />
+  <meta property="og:description" content="Description" />
+  <meta property="og:image" content="https://..." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Page Title" />
+  <meta name="twitter:description" content="Description" />
+  <link rel="canonical" href="https://..." />
+  {/* ... 20+ more lines */}
+</Head>
+```
+
+**With this package:**
+```typescript
+<SEOHead config={{ title: 'Page Title', description: 'Description' }} />
+```
+
+One line instead of 20+. The package generates all meta tags automatically.
+
+### Problem 2: Easy to Make Mistakes
+
+**Manual issues:**
+- Forget to add Open Graph tags → poor social sharing
+- Missing canonical URLs → duplicate content penalties
+- Wrong meta tag format → search engines ignore them
+- Inconsistent formatting across pages
+
+**How this package helps:**
+- Validates all inputs
+- Ensures correct meta tag structure
+- Provides sensible defaults
+- Consistent output across all pages
+
+### Problem 3: No SEO Feedback
+
+**Manual approach:**
+- Write content, publish, hope it's optimized
+- No way to know if title is too long
+- No keyword density tracking
+- No readability checks
+- Find issues after publishing
+
+**How this package helps:**
+- Real-time SEO analysis as you type
+- Instant feedback on title length, description length
+- Keyword density calculations
+- Readability scoring
+- Issue detection before publishing
+
+### Problem 4: Structured Data is Complex
+
+**Manual approach:**
+```typescript
+// Writing Schema.org JSON-LD manually
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Article Title",
+  "description": "Description",
+  "image": "https://...",
+  "datePublished": "2024-01-01",
+  "author": {
+    "@type": "Person",
+    "name": "Author Name"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Publisher",
+    "url": "https://..."
+  }
+})}
+</script>
+```
+
+Easy to make syntax errors, forget required fields, or use wrong schema types.
+
+**With this package:**
+```typescript
+const schema = generateArticleSchema({
+  headline: 'Article Title',
+  description: 'Description',
+  image: 'https://...',
+  datePublished: '2024-01-01',
+  author: { name: 'Author Name' },
+  publisher: { name: 'Publisher', url: 'https://...' },
+});
+```
+
+Type-safe, validated, and guaranteed to be correct.
+
+### Problem 5: Sitemap Maintenance
+
+**Manual approach:**
+- Create XML sitemap file
+- Update it every time you add/remove pages
+- Manually set priorities and change frequencies
+- Easy to forget or make errors
+
+**How this package helps:**
+- Generate sitemaps programmatically
+- Pull from your routes automatically
+- Type-safe configuration
+- Works with dynamic routes
+
+### Problem 6: Time Consuming
+
+**Manual SEO setup per page:**
+- Write meta tags: 5-10 minutes
+- Add Open Graph: 5 minutes
+- Create structured data: 10-15 minutes
+- Validate everything: 5 minutes
+- **Total: 25-30 minutes per page**
+
+**With this package:**
+- Configure SEO: 1-2 minutes
+- Analysis feedback: instant
+- **Total: 1-2 minutes per page**
+
+Saves 20+ minutes per page. For a site with 50 pages, that's 16+ hours saved.
+
+### Problem 7: No Type Safety
+
+**Manual approach:**
+- Typos in meta tag names
+- Wrong property values
+- Missing required fields
+- Runtime errors discovered later
+
+**How this package helps:**
+- Full TypeScript support
+- Compile-time error checking
+- Autocomplete for all options
+- Type-safe schema generation
+
+---
+
+## How it works
+
+The package provides a unified API for all SEO needs:
+
+1. **Configuration**: Pass your SEO data once
+2. **Generation**: Automatically creates all meta tags, structured data, etc.
+3. **Analysis**: Real-time feedback on SEO quality
+4. **Validation**: Ensures everything follows best practices
+
+You focus on your content, the package handles the technical SEO details.
+
+---
+
+## Installation
 
 ```bash
-# npm
 npm install alidan-premium-seo
-
-# yarn
-yarn add alidan-premium-seo
-
-# pnpm
-pnpm add alidan-premium-seo
 ```
+
+Requires Next.js 13+ and React 18+.
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
-### Import Methods
-
-You can import using **named exports** (recommended) or **default export**:
-
-```typescript
-// Named exports (recommended)
-import { generateSEOMetadata, SEOHead, useSEO } from 'alidan-premium-seo';
-
-// Default export (alternative)
-import AlidanSEO from 'alidan-premium-seo';
-const metadata = AlidanSEO.generateSEOMetadata({ ... });
-```
-
-> **Important**: This package provides SEO utilities, components, and analysis tools. It does **not** include form components. You'll need to create your own forms to collect SEO data, then use this package's functions to generate metadata and analyze content.
-
-### App Router (Next.js 13+)
+### App Router
 
 ```typescript
 // app/page.tsx
@@ -108,12 +254,12 @@ import { generateSEOMetadata } from 'alidan-premium-seo';
 export const metadata = generateSEOMetadata({
   config: {
     title: 'Home Page - My Website',
-    description: 'Welcome to my amazing website',
-    canonical: 'https://example.com',
-    ogImage: 'https://example.com/og-image.jpg',
+    description: 'Welcome to my website',
+    canonical: 'https://mywebsite.com',
+    ogImage: 'https://mywebsite.com/og-image.jpg',
   },
   siteName: 'My Website',
-  siteUrl: 'https://example.com',
+  siteUrl: 'https://mywebsite.com',
 });
 
 export default function HomePage() {
@@ -133,12 +279,12 @@ export default function HomePage() {
       <SEOHead
         config={{
           title: 'Home Page - My Website',
-          description: 'Welcome to my amazing website',
-          canonical: 'https://example.com',
-          ogImage: 'https://example.com/og-image.jpg',
+          description: 'Welcome to my website',
+          canonical: 'https://mywebsite.com',
+          ogImage: 'https://mywebsite.com/og-image.jpg',
         }}
         siteName="My Website"
-        siteUrl="https://example.com"
+        siteUrl="https://mywebsite.com"
       />
       <main>Welcome</main>
     </>
@@ -148,272 +294,202 @@ export default function HomePage() {
 
 ---
 
-## 📖 Documentation
+## Examples
 
-### Table of Contents
-
-- [Basic Usage](#basic-usage)
-- [Dynamic Pages](#dynamic-pages)
-- [SEO Analysis](#seo-analysis)
-- [Structured Data](#structured-data)
-- [Sitemap & Robots](#sitemap--robots)
-- [API Reference](#api-reference)
-- [Best Practices](#best-practices)
-
----
-
-### Basic Usage
-
-#### App Router
-
-```typescript
-import { generateSEOMetadata } from 'alidan-premium-seo';
-
-export const metadata = generateSEOMetadata({
-  config: {
-    title: 'Page Title',
-    description: 'Page description for search engines',
-    keywords: ['keyword1', 'keyword2'],
-    canonical: 'https://example.com/page',
-    ogImage: 'https://example.com/image.jpg',
-    twitterCard: 'summary_large_image',
-  },
-});
-```
-
-#### Pages Router
-
-```typescript
-import { SEOHead } from 'alidan-premium-seo';
-
-export default function Page() {
-  return (
-    <>
-      <SEOHead
-        config={{
-          title: 'Page Title',
-          description: 'Page description',
-          canonical: 'https://example.com/page',
-        }}
-      />
-      {/* Your content */}
-    </>
-  );
-}
-```
-
----
-
-### Dynamic Pages
-
-#### App Router
+### Blog Post with Structured Data
 
 ```typescript
 // app/blog/[slug]/page.tsx
-import { generateSEOMetadata } from 'alidan-premium-seo';
+import { generateSEOMetadata, StructuredData, generateArticleSchema } from 'alidan-premium-seo';
+
+async function getPost(slug: string) {
+  // Your data fetching
+  return {
+    title: 'How to Build Better SEO',
+    excerpt: 'Learn the secrets of great SEO...',
+    image: 'https://example.com/post-image.jpg',
+    author: { name: 'John Doe' },
+    publishedAt: '2024-01-15',
+  };
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await fetchPost(params.slug);
+  const post = await getPost(params.slug);
 
   return generateSEOMetadata({
     config: {
-      title: `${post.title} - Blog`,
+      title: `${post.title} - My Blog`,
       description: post.excerpt,
-      canonical: `https://example.com/blog/${params.slug}`,
+      canonical: `https://mywebsite.com/blog/${params.slug}`,
       ogImage: post.image,
       ogType: 'article',
-      focusKeyword: post.primaryKeyword,
     },
   });
 }
-```
 
-#### Pages Router with Hook
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug);
 
-```typescript
-// pages/blog/[slug].tsx
-import { SEOHead, useSEO } from 'alidan-premium-seo';
-
-export default function BlogPost({ post }: { post: Post }) {
-  const { seoConfig, updateSEO } = useSEO({
-    title: `${post.title} - Blog`,
+  const articleSchema = generateArticleSchema({
+    headline: post.title,
     description: post.excerpt,
-    canonical: `https://example.com/blog/${post.slug}`,
-    focusKeyword: post.primaryKeyword,
+    image: post.image,
+    datePublished: post.publishedAt,
+    author: { name: post.author.name },
+    publisher: { name: 'My Blog', url: 'https://mywebsite.com' },
   });
 
   return (
     <>
-      <SEOHead config={seoConfig} />
-      <article>{/* Content */}</article>
+      <StructuredData data={articleSchema} />
+      <article>
+        <h1>{post.title}</h1>
+        <p>{post.excerpt}</p>
+      </article>
     </>
   );
 }
 ```
 
----
-
-### Creating SEO Forms
-
-**Important**: This package does **not** include form components. You need to create your own forms to collect SEO data. Here's a basic example:
+### E-commerce Product Page
 
 ```typescript
-import { useSEO, SEOAnalysisPanel } from 'alidan-premium-seo';
+// app/products/[id]/page.tsx
+import { generateSEOMetadata, StructuredData, generateProductSchema } from 'alidan-premium-seo';
 
-function SEOForm() {
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const product = await getProduct(params.id);
+
+  return generateSEOMetadata({
+    config: {
+      title: `${product.name} - $${product.price} | My Store`,
+      description: product.description,
+      canonical: `https://mystore.com/products/${params.id}`,
+      ogImage: product.images[0],
+      ogType: 'product',
+    },
+  });
+}
+
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const product = await getProduct(params.id);
+
+  const productSchema = generateProductSchema({
+    name: product.name,
+    description: product.description,
+    image: product.images,
+    brand: product.brand,
+    offers: {
+      price: product.price.toString(),
+      priceCurrency: 'USD',
+      availability: product.inStock 
+        ? 'https://schema.org/InStock' 
+        : 'https://schema.org/OutOfStock',
+    },
+  });
+
+  return (
+    <>
+      <StructuredData data={productSchema} />
+      <div>
+        <h1>{product.name}</h1>
+        <p>${product.price}</p>
+      </div>
+    </>
+  );
+}
+```
+
+### SEO Form with Analysis
+
+```typescript
+// components/SEOForm.tsx
+'use client';
+
+import { useState } from 'react';
+import { useSEO, SEOAnalysisPanel } from 'alidan-premium-seo';
+import 'alidan-premium-seo/dist/styles/seo-analysis.css';
+
+export default function SEOForm() {
   const { seoConfig, updateSEO, analysis } = useSEO({
     title: '',
     description: '',
     focusKeyword: '',
   });
 
-  return (
-    <form>
-      <div>
-        <label>Title</label>
-        <input
-          value={seoConfig.title || ''}
-          onChange={(e) => updateSEO({ title: e.target.value })}
-        />
-        <span>{seoConfig.title?.length || 0} / 60</span>
-      </div>
-      
-      <div>
-        <label>Description</label>
-        <textarea
-          value={seoConfig.description || ''}
-          onChange={(e) => updateSEO({ description: e.target.value })}
-        />
-        <span>{seoConfig.description?.length || 0} / 160</span>
-      </div>
-      
-      <SEOAnalysisPanel analysis={analysis} />
-    </form>
-  );
-}
-```
-
-For a complete form example with all fields, see `src/examples/seo-form-example.tsx` in the package repository.
-
----
-
-### SEO Analysis
-
-Get real-time SEO feedback with our built-in analysis tools.
-
-#### Using the Analysis Panel
-
-```typescript
-import { useSEO, SEOAnalysisPanel } from 'alidan-premium-seo';
-import 'alidan-premium-seo/dist/styles/seo-analysis.css';
-
-function ContentEditor() {
-  const { seoConfig, updateSEO, analysis } = useSEO({
-    title: 'My Page',
-    description: 'Page description',
-    focusKeyword: 'nextjs seo',
-    content: 'Your page content...',
-  });
+  const [content, setContent] = useState('');
 
   return (
-    <div className="editor-layout">
-      <div className="editor">
-        <input
-          value={seoConfig.title}
-          onChange={(e) => updateSEO({ title: e.target.value })}
-        />
-        {/* More inputs */}
+    <div style={{ display: 'flex', gap: '20px' }}>
+      <div style={{ flex: 1 }}>
+        <h2>SEO Settings</h2>
+        
+        <div style={{ marginBottom: '20px' }}>
+          <label>
+            Page Title ({seoConfig.title?.length || 0} / 60)
+          </label>
+          <input
+            type="text"
+            value={seoConfig.title || ''}
+            onChange={(e) => updateSEO({ title: e.target.value })}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <label>
+            Meta Description ({seoConfig.description?.length || 0} / 160)
+          </label>
+          <textarea
+            value={seoConfig.description || ''}
+            onChange={(e) => updateSEO({ description: e.target.value })}
+            rows={3}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <label>Focus Keyword</label>
+          <input
+            type="text"
+            value={seoConfig.focusKeyword || ''}
+            onChange={(e) => updateSEO({ focusKeyword: e.target.value })}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <label>Content</label>
+          <textarea
+            value={content}
+            onChange={(e) => {
+              setContent(e.target.value);
+              updateSEO({ content: e.target.value });
+            }}
+            rows={10}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
       </div>
-      <SEOAnalysisPanel analysis={analysis} />
+
+      <div style={{ width: '350px' }}>
+        <SEOAnalysisPanel analysis={analysis} />
+      </div>
     </div>
   );
 }
 ```
 
-#### Manual Analysis
-
-```typescript
-import { analyzeSEO } from 'alidan-premium-seo';
-
-const analysis = analyzeSEO({
-  title: 'My Page',
-  description: 'Description',
-  focusKeyword: 'keyword',
-  content: 'Content text...',
-});
-
-console.log(`SEO Score: ${analysis.score}/100`);
-analysis.issues.forEach(issue => {
-  console.log(`${issue.severity}: ${issue.message}`);
-  if (issue.fix) console.log(`  → ${issue.fix}`);
-});
-```
-
-#### Analysis Features
-
-- **Score Calculation**: 0-100 score based on multiple factors
-- **Keyword Tracking**: Monitor focus keyword usage and density
-- **Readability Metrics**: Flesch Reading Ease, sentence length, paragraph structure
-- **Issue Detection**: Automatic identification of SEO problems
-- **Actionable Fixes**: Specific recommendations for each issue
-
----
-
-### Structured Data
-
-Generate Schema.org structured data for rich snippets.
-
-```typescript
-import {
-  generateArticleSchema,
-  generateBreadcrumbSchema,
-  generateProductSchema,
-  StructuredData,
-} from 'alidan-premium-seo';
-
-// Article schema
-const articleSchema = generateArticleSchema({
-  headline: 'Article Title',
-  description: 'Article description',
-  image: 'https://example.com/image.jpg',
-  datePublished: '2024-01-01',
-  author: { name: 'Author Name' },
-  publisher: { name: 'Site Name', url: 'https://example.com' },
-});
-
-// Breadcrumb schema
-const breadcrumbSchema = generateBreadcrumbSchema({
-  items: [
-    { name: 'Home', url: 'https://example.com' },
-    { name: 'Category', url: 'https://example.com/category' },
-    { name: 'Page', url: 'https://example.com/page' },
-  ],
-});
-
-// Use in component
-<StructuredData data={[articleSchema, breadcrumbSchema]} />
-```
-
-Available schema generators:
-- `generateOrganizationSchema()` - Organization information
-- `generateArticleSchema()` - Blog posts and articles
-- `generateBreadcrumbSchema()` - Navigation breadcrumbs
-- `generateProductSchema()` - E-commerce products
-- `generateWebSiteSchema()` - Website information
-
----
-
-### Sitemap & Robots
-
-#### Sitemap (App Router)
+### Sitemap (App Router)
 
 ```typescript
 // app/sitemap.ts
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://example.com';
-  
+  const baseUrl = 'https://mywebsite.com';
+  const posts = await fetchPosts();
+
   return [
     {
       url: baseUrl,
@@ -421,33 +497,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 1,
     },
-    // Add more routes
+    ...posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    })),
   ];
 }
 ```
 
-#### Sitemap (Pages Router)
-
-```typescript
-// pages/api/sitemap.xml.ts
-import { NextApiRequest, NextApiResponse } from 'next';
-import { generateSitemap } from 'alidan-premium-seo';
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const sitemap = generateSitemap(
-    [
-      { url: '/', lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
-      // Add more routes
-    ],
-    'https://example.com'
-  );
-
-  res.setHeader('Content-Type', 'application/xml');
-  res.status(200).send(sitemap);
-}
-```
-
-#### Robots.txt (App Router)
+### Robots.txt (App Router)
 
 ```typescript
 // app/robots.ts
@@ -462,263 +522,277 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://example.com/sitemap.xml',
+    sitemap: 'https://mywebsite.com/sitemap.xml',
   };
 }
 ```
 
-#### Robots.txt (Pages Router)
+---
+
+## SEO Analysis
+
+The package includes real-time SEO analysis. Use the `useSEO` hook to get instant feedback:
 
 ```typescript
-// pages/api/robots.txt.ts
-import { NextApiRequest, NextApiResponse } from 'next';
-import { generateRobotsTxt } from 'alidan-premium-seo';
+import { useSEO, SEOAnalysisPanel } from 'alidan-premium-seo';
+import 'alidan-premium-seo/dist/styles/seo-analysis.css';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const robotsTxt = generateRobotsTxt({
-    userAgent: '*',
-    allow: ['/'],
-    disallow: ['/api/', '/admin/'],
-    sitemap: ['https://example.com/sitemap.xml'],
+function ContentEditor() {
+  const { seoConfig, updateSEO, analysis } = useSEO({
+    title: 'My Page Title',
+    description: 'My page description',
+    focusKeyword: 'nextjs seo',
+    content: 'Your page content here...',
   });
 
-  res.setHeader('Content-Type', 'text/plain');
-  res.status(200).send(robotsTxt);
+  return (
+    <div style={{ display: 'flex' }}>
+      <div>
+        <input
+          value={seoConfig.title}
+          onChange={(e) => updateSEO({ title: e.target.value })}
+        />
+      </div>
+      <SEOAnalysisPanel analysis={analysis} />
+    </div>
+  );
 }
 ```
 
+The analysis panel shows SEO score, issues, keyword density, and readability metrics.
+
 ---
 
-## 📚 API Reference
+## API Reference
 
 ### Components
 
-#### `SEOHead`
-
-React component for Pages Router that renders SEO meta tags.
+#### `SEOHead` (Pages Router)
 
 ```typescript
+import { SEOHead } from 'alidan-premium-seo';
+
 <SEOHead
-  config={SEOConfig}
-  defaultTitle?: string
-  defaultDescription?: string
-  siteName?: string
-  siteUrl?: string
+  config={{
+    title: 'Page Title',
+    description: 'Page description',
+    canonical: 'https://example.com/page',
+    ogImage: 'https://example.com/image.jpg',
+    keywords: ['keyword1', 'keyword2'],
+    focusKeyword: 'primary keyword',
+    noindex: false,
+    nofollow: false,
+  }}
+  siteName="My Website"
+  siteUrl="https://example.com"
 />
+```
+
+#### `generateSEOMetadata` (App Router)
+
+```typescript
+import { generateSEOMetadata } from 'alidan-premium-seo';
+
+export const metadata = generateSEOMetadata({
+  config: {
+    title: 'Page Title',
+    description: 'Page description',
+    canonical: 'https://example.com/page',
+    ogImage: 'https://example.com/image.jpg',
+  },
+  siteName: 'My Website',
+  siteUrl: 'https://example.com',
+});
 ```
 
 #### `SEOAnalysisPanel`
 
-Visual display of SEO analysis results.
-
 ```typescript
-<SEOAnalysisPanel
-  analysis={SEOAnalysis}
-  className?: string
-/>
+import { SEOAnalysisPanel } from 'alidan-premium-seo';
+
+<SEOAnalysisPanel analysis={analysis} />
 ```
 
 #### `StructuredData`
 
-Injects Schema.org structured data into the page.
-
 ```typescript
-<StructuredData data={Record<string, any> | Record<string, any>[]} />
-```
+import { StructuredData, generateArticleSchema } from 'alidan-premium-seo';
 
-### Functions
-
-#### `generateSEOMetadata(config, options?)`
-
-Generates Next.js App Router metadata object.
-
-```typescript
-const metadata = generateSEOMetadata({
-  config: SEOConfig,
-  defaultTitle?: string,
-  defaultDescription?: string,
-  siteName?: string,
-  siteUrl?: string,
+const schema = generateArticleSchema({
+  headline: 'Article Title',
+  description: 'Article description',
+  image: 'https://example.com/image.jpg',
+  datePublished: '2024-01-01',
+  author: { name: 'Author Name' },
+  publisher: { name: 'Site Name', url: 'https://example.com' },
 });
-```
 
-#### `analyzeSEO(config, content?)`
-
-Analyzes SEO configuration and returns detailed analysis.
-
-```typescript
-const analysis = analyzeSEO(config, content?);
-// Returns: SEOAnalysis
-```
-
-#### `validateBestPractices(config)`
-
-Validates configuration against SEO best practices.
-
-```typescript
-const checks = validateBestPractices(config);
-// Returns: BestPracticeCheck[]
-```
-
-#### `generateSitemap(items, baseUrl)`
-
-Generates XML sitemap string.
-
-```typescript
-const sitemap = generateSitemap(sitemapItems, 'https://example.com');
-```
-
-#### `generateRobotsTxt(config)`
-
-Generates robots.txt content.
-
-```typescript
-const robotsTxt = generateRobotsTxt({
-  userAgent: '*',
-  allow: ['/'],
-  disallow: ['/api/'],
-});
+<StructuredData data={schema} />
 ```
 
 ### Hooks
 
-#### `useSEO(initialConfig?)`
-
-Manages SEO state with automatic analysis.
+#### `useSEO`
 
 ```typescript
+import { useSEO } from 'alidan-premium-seo';
+
 const {
-  seoConfig,
-  updateSEO,
-  setSEO,
-  resetSEO,
-  analysis,
-  analyze,
-} = useSEO(initialConfig);
+  seoConfig,      // Current SEO configuration
+  updateSEO,      // Update SEO config (merges with existing)
+  setSEO,         // Replace entire SEO config
+  resetSEO,       // Reset to default
+  analysis,       // Real-time SEO analysis
+  analyze,        // Manual analysis function
+} = useSEO({
+  title: 'Initial Title',
+  description: 'Initial Description',
+  focusKeyword: 'keyword',
+  content: 'Page content...',
+});
 ```
 
-### Type Definitions
+### Utilities
+
+#### `analyzeSEO`
 
 ```typescript
-interface SEOConfig {
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  canonical?: string;
-  ogImage?: string;
-  ogType?: string;
-  focusKeyword?: string;
-  content?: string;
-  // ... more options
-}
+import { analyzeSEO } from 'alidan-premium-seo';
 
-interface SEOAnalysis {
-  score: number;
-  issues: SEOIssue[];
-  readability?: ReadabilityAnalysis;
-  keywordAnalysis?: KeywordAnalysis;
-}
+const analysis = analyzeSEO({
+  title: 'My Page',
+  description: 'Description',
+  focusKeyword: 'keyword',
+  content: 'Content text...',
+});
 ```
 
-For complete type definitions, see the [TypeScript definitions](./src/types.ts).
+#### `generateSitemap` (Pages Router)
+
+```typescript
+import { generateSitemap } from 'alidan-premium-seo';
+
+const sitemap = generateSitemap(
+  [
+    { url: '/', lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
+    { url: '/about', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+  ],
+  'https://example.com'
+);
+```
+
+#### `generateRobotsTxt`
+
+```typescript
+import { generateRobotsTxt } from 'alidan-premium-seo';
+
+const robotsTxt = generateRobotsTxt({
+  userAgent: '*',
+  allow: ['/'],
+  disallow: ['/api/', '/admin/'],
+  sitemap: ['https://example.com/sitemap.xml'],
+});
+```
+
+### Schema Generators
+
+```typescript
+import {
+  generateOrganizationSchema,
+  generateArticleSchema,
+  generateBreadcrumbSchema,
+  generateProductSchema,
+  generateWebSiteSchema,
+} from 'alidan-premium-seo';
+
+// Organization
+const orgSchema = generateOrganizationSchema({
+  name: 'My Company',
+  url: 'https://example.com',
+  logo: 'https://example.com/logo.png',
+});
+
+// Article
+const articleSchema = generateArticleSchema({
+  headline: 'Article Title',
+  description: 'Description',
+  image: 'https://example.com/image.jpg',
+  datePublished: '2024-01-01',
+  author: { name: 'Author' },
+  publisher: { name: 'Publisher', url: 'https://example.com' },
+});
+
+// Breadcrumb
+const breadcrumbSchema = generateBreadcrumbSchema({
+  items: [
+    { name: 'Home', url: 'https://example.com' },
+    { name: 'Category', url: 'https://example.com/category' },
+  ],
+});
+
+// Product
+const productSchema = generateProductSchema({
+  name: 'Product Name',
+  description: 'Product description',
+  image: ['https://example.com/image1.jpg'],
+  brand: 'Brand Name',
+  offers: {
+    price: '99.99',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+});
+```
 
 ---
 
-## 🎓 Best Practices
+## Styling
 
-### Title Optimization
-
-- ✅ Keep titles between 30-60 characters
-- ✅ Include your focus keyword near the beginning
-- ✅ Make titles descriptive and compelling
-- ❌ Avoid keyword stuffing
-- ❌ Don't use generic titles like "Home" or "Page 1"
-
-### Meta Descriptions
-
-- ✅ Aim for 120-160 characters
-- ✅ Include a call-to-action when appropriate
-- ✅ Make descriptions unique for each page
-- ✅ Include your focus keyword naturally
-
-### Images
-
-- ✅ Use high-quality images (1200x630px for Open Graph)
-- ✅ Optimize images for web (WebP format recommended)
-- ✅ Add descriptive alt text
-- ✅ Use absolute URLs for social media images
-
-### Structured Data
-
-- ✅ Use appropriate schema types for your content
-- ✅ Validate with [Google's Rich Results Test](https://search.google.com/test/rich-results)
-- ✅ Keep structured data accurate and up-to-date
-
-### Content Quality
-
-- ✅ Aim for Flesch Reading Ease score of 60-70
-- ✅ Use subheadings to structure content
-- ✅ Keep paragraphs under 150 words
-- ✅ Maintain keyword density between 0.5-2.5%
-
-### Technical SEO
-
-- ✅ Always set canonical URLs
-- ✅ Keep sitemaps updated
-- ✅ Use proper robots.txt configuration
-- ✅ Monitor SEO scores before publishing
-
----
-
-## 🎨 Styling
-
-The SEO Analysis Panel comes with default styles. Import them in your application:
+Import the default styles for the SEO Analysis Panel:
 
 ```typescript
-// In your app entry point or layout
 import 'alidan-premium-seo/dist/styles/seo-analysis.css';
 ```
 
-Or include in your global CSS:
+You can customize the styles by overriding CSS variables or targeting component classes.
 
-```css
-@import 'alidan-premium-seo/dist/styles/seo-analysis.css';
+---
+
+## TypeScript
+
+Full TypeScript support is included. All types are exported:
+
+```typescript
+import type { SEOConfig, SEOAnalysis, SEOIssue } from 'alidan-premium-seo';
 ```
 
-You can customize the styles by overriding the CSS variables or targeting the component classes.
+---
+
+## Notes
+
+- This package doesn't include form components. You'll need to create your own forms to collect SEO data.
+- The SEO analysis works best when you provide both the SEO config and the page content.
+- Always use absolute URLs for Open Graph images and canonical URLs.
+- Validate structured data with [Google's Rich Results Test](https://search.google.com/test/rich-results).
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions welcome. Open an issue or submit a PR.
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- Built with ❤️ for the Next.js community
-- Built following industry best practices from Google and the SEO community
-- Thanks to all contributors and users
+MIT
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by Adan Sarfraz**
+Made by Adan Sarfraz
 
-[Report Bug](https://github.com/adan-sarfraz/alidan-premium-seo/issues) • [Request Feature](https://github.com/adan-sarfraz/alidan-premium-seo/issues) • [Documentation](https://github.com/adan-sarfraz/alidan-premium-seo#readme)
+[Report Bug](https://github.com/eng-adan/alidan-premium-seo/issues) • [Request Feature](https://github.com/eng-adan/alidan-premium-seo/issues)
 
 </div>
