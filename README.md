@@ -84,6 +84,21 @@ pnpm add alidan-premium-seo
 
 ## ⚡ Quick Start
 
+### Import Methods
+
+You can import using **named exports** (recommended) or **default export**:
+
+```typescript
+// Named exports (recommended)
+import { generateSEOMetadata, SEOHead, useSEO } from 'alidan-premium-seo';
+
+// Default export (alternative)
+import AlidanSEO from 'alidan-premium-seo';
+const metadata = AlidanSEO.generateSEOMetadata({ ... });
+```
+
+> **Important**: This package provides SEO utilities, components, and analysis tools. It does **not** include form components. You'll need to create your own forms to collect SEO data, then use this package's functions to generate metadata and analyze content.
+
 ### App Router (Next.js 13+)
 
 ```typescript
@@ -235,6 +250,50 @@ export default function BlogPost({ post }: { post: Post }) {
   );
 }
 ```
+
+---
+
+### Creating SEO Forms
+
+**Important**: This package does **not** include form components. You need to create your own forms to collect SEO data. Here's a basic example:
+
+```typescript
+import { useSEO, SEOAnalysisPanel } from 'alidan-premium-seo';
+
+function SEOForm() {
+  const { seoConfig, updateSEO, analysis } = useSEO({
+    title: '',
+    description: '',
+    focusKeyword: '',
+  });
+
+  return (
+    <form>
+      <div>
+        <label>Title</label>
+        <input
+          value={seoConfig.title || ''}
+          onChange={(e) => updateSEO({ title: e.target.value })}
+        />
+        <span>{seoConfig.title?.length || 0} / 60</span>
+      </div>
+      
+      <div>
+        <label>Description</label>
+        <textarea
+          value={seoConfig.description || ''}
+          onChange={(e) => updateSEO({ description: e.target.value })}
+        />
+        <span>{seoConfig.description?.length || 0} / 160</span>
+      </div>
+      
+      <SEOAnalysisPanel analysis={analysis} />
+    </form>
+  );
+}
+```
+
+For a complete form example with all fields, see `src/examples/seo-form-example.tsx` in the package repository.
 
 ---
 
