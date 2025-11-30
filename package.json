@@ -1,6 +1,6 @@
 {
   "name": "alidan-premium-seo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A comprehensive SEO plugin for Next.js applications with advanced analysis and optimization tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
